@@ -1,0 +1,22 @@
+# idea
+.idea/
+*.iml
+.project
+.settings/
+
+# building
+target/
+
+bin/
+.settings/
+*.zip
+*.class
+*.log
+*.jar
+
+venv/
+
+*.pyc
+*.patch
+
+
