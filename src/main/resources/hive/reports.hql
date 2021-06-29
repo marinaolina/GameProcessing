@@ -35,14 +35,13 @@ from (
 	select 	a.usr_id as usr,
 			a.my_first_day,
 			b.event as report_day,
-			case when datediff(b.event, a.my_first_day) = 3 then 1 else 0 end day3,
-			case when datediff(b.event, a.my_first_day) = 7 then 1 else 0 end day7
+			case when datediff(b.event, a.my_first_day) = 2 then 1 else 0 end day3,
+			case when datediff(b.event, a.my_first_day) = 6 then 1 else 0 end day7
 			from (
 				select 	distinct(user_id) as usr_id,
 						min(event) over (partition by user_id) as my_first_day from game_d
 				) a right join (
-	select distinct(user_id), event from game_d) b on a.usr_id = b.user_id
+	select distinct(user_id), event from game_d where (current_date() - interval '14' day) < event) b on a.usr_id = b.user_id
 	) t
 group by report_day;
-
 
